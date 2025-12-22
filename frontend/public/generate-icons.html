@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NexusMind Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        canvas {
+            border: 2px solid #8b5cf6;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .icon-item {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎨 NexusMind Icon Generator</h1>
+        <p>Click the buttons below to generate and download app icons in various sizes.</p>
+
+        <div>
+            <button onclick="generateAllIcons()">Generate All Icons</button>
+            <button onclick="generateIcon(512)">512x512</button>
+            <button onclick="generateIcon(192)">192x192</button>
+            <button onclick="generateIcon(144)">144x144</button>
+            <button onclick="generateIcon(96)">96x96</button>
+            <button onclick="generateIcon(72)">72x72</button>
+            <button onclick="generateIcon(32)">32x32 (Favicon)</button>
+        </div>
+
+        <div class="icon-grid" id="iconGrid"></div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#8b5cf6');
+            gradient.addColorStop(1, '#3b82f6');
+
+            // Rounded rectangle background
+            const radius = size * 0.225;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+
+            // Scale factor for elements
+            const scale = size / 512;
+            const centerX = size / 2;
+            const centerY = size / 2;
+
+            // Draw neural network
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 3 * scale;
+            ctx.lineCap = 'round';
+
+            // Node positions (scaled)
+            const nodes = [
+                { x: centerX, y: centerY - 64 * scale },
+                { x: centerX - 64 * scale, y: centerY },
+                { x: centerX + 64 * scale, y: centerY },
+                { x: centerX, y: centerY + 64 * scale },
+                { x: centerX - 96 * scale, y: centerY + 64 * scale },
+                { x: centerX + 96 * scale, y: centerY + 64 * scale }
+            ];
+
+            // Draw connections
+            const connections = [
+                [0, 1], [0, 2], [1, 3], [2, 3], [1, 4], [2, 5]
+            ];
+
+            connections.forEach(([from, to]) => {
+                ctx.beginPath();
+                ctx.moveTo(nodes[from].x, nodes[from].y);
+                ctx.lineTo(nodes[to].x, nodes[to].y);
+                ctx.stroke();
+            });
+
+            // Draw nodes
+            nodes.forEach((node, i) => {
+                const radius = (i < 4 ? 20 : 16) * scale;
+                const opacity = i < 4 ? 0.9 : 0.7;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw document lines
+            const lineY = centerY + 92 * scale;
+            const lineHeight = 4 * scale;
+            const lineSpacing = 12 * scale;
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.fillRect(centerX - 32 * scale, lineY, 64 * scale, lineHeight);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.fillRect(centerX - 48 * scale, lineY + lineSpacing, 96 * scale, lineHeight);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.fillRect(centerX - 40 * scale, lineY + lineSpacing * 2, 80 * scale, lineHeight);
+        }
+
+        function generateIcon(size) {
+            const canvas = document.createElement('canvas');
+            drawIcon(canvas, size);
+
+            // Create download link
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon-${size}x${size}.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // Display preview
+            const iconGrid = document.getElementById('iconGrid');
+            const iconItem = document.createElement('div');
+            iconItem.className = 'icon-item';
+            iconItem.innerHTML = `
+                <canvas width="${size}" height="${size}" style="max-width: 100%; height: auto;"></canvas>
+                <p>${size}x${size}</p>
+            `;
+
+            const displayCanvas = iconItem.querySelector('canvas');
+            drawIcon(displayCanvas, size);
+
+            iconGrid.appendChild(iconItem);
+        }
+
+        function generateAllIcons() {
+            document.getElementById('iconGrid').innerHTML = '';
+            const sizes = [512, 384, 192, 152, 144, 128, 96, 72];
+            sizes.forEach((size, index) => {
+                setTimeout(() => generateIcon(size), index * 100);
+            });
+        }
+
+        // Generate preview on load
+        window.onload = () => {
+            generateIcon(192);
+        };
+    </script>
+</body>
+
+</html>

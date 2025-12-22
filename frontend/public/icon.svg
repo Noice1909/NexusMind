@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="115" fill="url(#gradient)"/>
+  
+  <!-- Brain/Mind Icon -->
+  <g transform="translate(128, 128)">
+    <!-- Neural network nodes -->
+    <circle cx="128" cy="64" r="20" fill="white" opacity="0.9"/>
+    <circle cx="64" cy="128" r="20" fill="white" opacity="0.9"/>
+    <circle cx="192" cy="128" r="20" fill="white" opacity="0.9"/>
+    <circle cx="128" cy="192" r="20" fill="white" opacity="0.9"/>
+    <circle cx="32" cy="192" r="16" fill="white" opacity="0.7"/>
+    <circle cx="224" cy="192" r="16" fill="white" opacity="0.7"/>
+    
+    <!-- Connections -->
+    <line x1="128" y1="64" x2="64" y2="128" stroke="white" stroke-width="3" opacity="0.5"/>
+    <line x1="128" y1="64" x2="192" y2="128" stroke="white" stroke-width="3" opacity="0.5"/>
+    <line x1="64" y1="128" x2="128" y2="192" stroke="white" stroke-width="3" opacity="0.5"/>
+    <line x1="192" y1="128" x2="128" y2="192" stroke="white" stroke-width="3" opacity="0.5"/>
+    <line x1="64" y1="128" x2="32" y2="192" stroke="white" stroke-width="2" opacity="0.4"/>
+    <line x1="192" y1="128" x2="224" y2="192" stroke="white" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Document/Note lines -->
+    <rect x="96" y="220" width="64" height="4" rx="2" fill="white" opacity="0.6"/>
+    <rect x="80" y="232" width="96" height="4" rx="2" fill="white" opacity="0.5"/>
+    <rect x="88" y="244" width="80" height="4" rx="2" fill="white" opacity="0.4"/>
+  </g>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
