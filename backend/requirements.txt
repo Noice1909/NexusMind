@@ -18,5 +18,6 @@ sentry-sdk[fastapi]==1.39.1       # Error tracking
 pydantic-settings==2.1.0          # Settings management
 email-validator==2.1.0            # Email validation
 
-# Phase 4: AI Features - Using Ollama (local LLM)
-# httpx already included above for API calls
+# AI Features - Multiple providers supported
+groq==0.4.1                       # Groq API (FREE cloud LLM - Llama 3.1)
+# httpx already included above for Ollama API calls (optional local LLM)
