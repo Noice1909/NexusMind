@@ -5,7 +5,14 @@
 
 import { retryWithBackoff } from './errorHandler';
 
+// API Base URL - defaults to production Render backend
+// Override with VITE_API_BASE_URL environment variable for local development
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://nexusmind.onrender.com';
+
+// Log the API URL being used (only in development)
+if (import.meta.env.DEV) {
+    console.log('🔗 API Base URL:', API_BASE_URL);
+}
 
 class ApiClient {
     /**
