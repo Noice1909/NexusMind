@@ -1,6 +1,7 @@
 /**
  * API client for NexusMind backend
  * Handles all HTTP requests to FastAPI endpoints with enhanced error handling
+ * @version 1.0.1 - Production ready with Render backend
  */
 
 import { retryWithBackoff } from './errorHandler';
