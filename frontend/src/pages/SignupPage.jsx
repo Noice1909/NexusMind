@@ -121,7 +121,7 @@ export default function SignupPage() {
                                     placeholder="••••••••"
                                 />
                             </div>
-                            <p className="mt-1 text-xs text-slate-500">Minimum 8 characters</p>
+                            <p className="mt-1 text-xs text-slate-500">Minimum 8 characters (recommended: 12-64 characters)</p>
                         </div>
 
                         {/* Confirm Password Input */}

@@ -13,6 +13,7 @@ python-multipart==0.0.20
 # Phase 1: Authentication & Security
 python-jose[cryptography]==3.3.0  # JWT handling
 passlib[bcrypt]==1.7.4            # Password hashing
+bcrypt==4.0.1                      # Explicit bcrypt version for compatibility
 slowapi==0.1.9                    # Rate limiting
 sentry-sdk[fastapi]==1.39.1       # Error tracking
 pydantic-settings==2.10.1         # Settings management

@@ -18,14 +18,49 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 
+def _truncate_password(password: str) -> str:
+    """
+    Truncate password to 72 bytes for bcrypt compatibility.
+    
+    bcrypt has a hard limit of 72 bytes. This function ensures
+    passwords are safely truncated while handling Unicode properly.
+    
+    Args:
+        password: The password string to truncate
+        
+    Returns:
+        Password truncated to maximum 72 bytes
+    """
+    password_bytes = password.encode('utf-8')
+    if len(password_bytes) <= 72:
+        return password
+    
+    # Truncate to 72 bytes, being careful with UTF-8 encoding
+    truncated_bytes = password_bytes[:72]
+    
+    # Decode, ignoring any incomplete UTF-8 sequences at the end
+    return truncated_bytes.decode('utf-8', errors='ignore')
+
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify a plain password against a hashed password."""
-    return pwd_context.verify(plain_password, hashed_password)
+    """
+    Verify a plain password against a hashed password.
+    
+    Truncates password to 72 bytes to comply with bcrypt's limit.
+    """
+    truncated = _truncate_password(plain_password)
+    return pwd_context.verify(truncated, hashed_password)
 
 
 def get_password_hash(password: str) -> str:
-    """Hash a password for storing."""
-    return pwd_context.hash(password)
+    """
+    Hash a password for storing.
+    
+    Truncates password to 72 bytes to comply with bcrypt's limit.
+    This is a security feature of bcrypt, not a limitation.
+    """
+    truncated = _truncate_password(password)
+    return pwd_context.hash(truncated)
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
