@@ -1,23 +1,11 @@
 /**
  * API client for NexusMind backend
  * Handles all HTTP requests to FastAPI endpoints with enhanced error handling
- * @version 1.0.1 - Production ready with Render backend
  */
 
 import { retryWithBackoff } from './errorHandler';
 
-// API Base URL - defaults to production Render backend
-// Override with VITE_API_BASE_URL environment variable for local development
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://nexusmind.onrender.com';
-
-// Debug logging (will be removed in production build)
-console.log('=== API Configuration Debug ===');
-console.log('VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
-console.log('Final API_BASE_URL:', API_BASE_URL);
-console.log('Mode:', import.meta.env.MODE);
-console.log('Prod:', import.meta.env.PROD);
-console.log('Dev:', import.meta.env.DEV);
-console.log('==============================');
 
 class ApiClient {
     /**

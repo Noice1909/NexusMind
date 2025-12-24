@@ -4,7 +4,7 @@ import { Lock, Loader2, CheckCircle, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://nexusmind.onrender.com';
 
 export default function ResetPasswordPage() {
     const [searchParams] = useSearchParams();
