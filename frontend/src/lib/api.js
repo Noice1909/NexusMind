@@ -10,10 +10,14 @@ import { retryWithBackoff } from './errorHandler';
 // Override with VITE_API_BASE_URL environment variable for local development
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://nexusmind.onrender.com';
 
-// Log the API URL being used (only in development)
-if (import.meta.env.DEV) {
-    console.log('🔗 API Base URL:', API_BASE_URL);
-}
+// Debug logging (will be removed in production build)
+console.log('=== API Configuration Debug ===');
+console.log('VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
+console.log('Final API_BASE_URL:', API_BASE_URL);
+console.log('Mode:', import.meta.env.MODE);
+console.log('Prod:', import.meta.env.PROD);
+console.log('Dev:', import.meta.env.DEV);
+console.log('==============================');
 
 class ApiClient {
     /**
