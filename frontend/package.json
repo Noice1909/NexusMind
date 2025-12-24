@@ -12,6 +12,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "fuse.js": "^7.0.0",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
@@ -19,7 +20,10 @@
     "react-hot-toast": "^2.4.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.20.1",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "tailwindcss": "^4.1.18",
+    "postcss": "^8.5.6",
+    "autoprefixer": "^10.4.23"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

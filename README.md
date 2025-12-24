@@ -138,9 +138,13 @@ JWT_SECRET_KEY=your-random-secret-key
 # Frontend URL (for CORS)
 FRONTEND_URL=http://localhost:5173
 
-# AI Configuration (Optional)
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=llama3.1:8b
+# AI Configuration
+# Groq API (FREE - Recommended for deployment)
+GROQ_API_KEY=gsk_your_groq_api_key_here
+
+# Ollama (Optional - for local development)
+# OLLAMA_BASE_URL=http://localhost:11434
+# OLLAMA_MODEL=llama3.1:8b
 
 # Email Configuration (Optional)
 SMTP_HOST=smtp.gmail.com
@@ -296,18 +300,26 @@ flake8 .
 
 ## 🚀 Deployment
 
-### **Vercel (Frontend)**
-1. Push code to GitHub
-2. Import project on Vercel
-3. Set environment variables
-4. Deploy automatically
+### **💰 FREE Deployment (Recommended for Portfolio)**
 
-### **Railway (Backend)**
-1. Connect GitHub repository
-2. Add environment variables
-3. Deploy with one click
+Deploy your app at **$0/month** using:
+- **Frontend**: Vercel (FREE)
+- **Backend**: Render (FREE)  
+- **Database**: Supabase (FREE)
+- **AI**: Groq API (FREE)
 
-**See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for detailed instructions.**
+**📖 Quick Start:** Follow [QUICKSTART_DEPLOY.md](./QUICKSTART_DEPLOY.md) for 15-minute deployment!
+
+### **📚 Deployment Guides**
+
+- **[DEPLOYMENT_SUMMARY.md](./DEPLOYMENT_SUMMARY.md)** - Overview of what's been set up
+- **[QUICKSTART_DEPLOY.md](./QUICKSTART_DEPLOY.md)** - 15-minute deployment guide
+- **[DEPLOYMENT_FREE.md](./DEPLOYMENT_FREE.md)** - Detailed FREE deployment instructions
+- **[DEPLOYMENT_COMPARISON.md](./DEPLOYMENT_COMPARISON.md)** - FREE vs PAID options
+
+**Total Cost: $0/month** 🎉
+
+
 
 ---
 
