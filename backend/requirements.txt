@@ -7,7 +7,7 @@ langchain==0.1.0
 langchain-community==0.0.10
 textblob==0.17.1
 gotrue==2.4.2
-httpx==0.28.1
+httpx==0.24.1
 python-multipart==0.0.20
 
 # Phase 1: Authentication & Security
